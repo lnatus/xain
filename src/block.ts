@@ -24,6 +24,10 @@ import * as hexToBinary from 'hex-to-binary'
       return false
     }
 
+    if (!Block.hashMatch(this.hash, this.difficulty)) {
+      return false
+    }
+
     return true
   }
 
