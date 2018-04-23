@@ -1,5 +1,4 @@
 import * as Crypto from 'crypto-js'
-import * as hexToBinary from 'hex-to-binary'
 
  class Block {
 
@@ -24,21 +23,11 @@ import * as hexToBinary from 'hex-to-binary'
       return false
     }
 
-    if (!Block.hashMatch(this.hash, this.difficulty)) {
-      return false
-    }
-
     return true
   }
 
   public static calculateHash = (index, parentHash, timestamp, data, difficulty, nonce) : string => {
     return Crypto.SHA256(`${index}${parentHash}${timestamp}${data}${difficulty}${nonce}`).toString()
-  }
-
-  public static hashMatch = (hash: string, difficulty) => {
-    const hashInBinary: string = hexToBinary(hash)
-    const requiredPrefix: string = '0'.repeat(difficulty)
-    return hashInBinary.startsWith(requiredPrefix)
   }
 
   constructor (index: number, parentHash: string, timestamp: number,
@@ -59,7 +48,7 @@ const Genesis: Block = new Block (
   new Date().getTime(),
   'Genesis Block',
   '89EB0AC031A63D2421CD05A2FBE41F3EA35F5C3712CA839CBF6B85C4EE07B7A3',
-  20,
+  1,
   0
 );
 

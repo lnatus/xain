@@ -9,12 +9,12 @@ class Worker {
     const parentBlock = this.chain.getLatestBlock()
     const index = parentBlock.index + 1;
     const timestamp = new Date().getTime()
+    const difficulty = this.chain.getDifficulty()
     let nonce = 0;
-    let difficulty = this.chain.getDifficulty()
 
     while (true) {
       const hash = Block.calculateHash(index, parentBlock.hash, timestamp, data, difficulty, nonce);
-      if (Block.hashMatch(hash, difficulty)) {
+      if (this.chain.hashMatch(hash)) {
           return new Block(index, parentBlock.hash, timestamp, data, hash, difficulty, nonce);
       }
       nonce++;

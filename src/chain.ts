@@ -1,4 +1,8 @@
+import * as hexToBinary from 'hex-to-binary'
+
 import { Block, Genesis } from './block'
+
+const DIFFICULTY_ADJUSTMENT_INTERVAL = 10
 
 class Chain {
 
@@ -21,7 +25,12 @@ class Chain {
     return true
   }
 
-  public getDifficulty = (): number => this.blocks[this.blocks.length -1].difficulty
+  private isDifficultyAdjustment = () : boolean => !(this.blocks.length % 10)
+
+  public getDifficulty = (): number => {
+    const currentDifficulty = this.blocks[this.blocks.length -1].difficulty
+    return this.isDifficultyAdjustment() ? currentDifficulty + 1 : currentDifficulty
+  }
   public getHeight = (): number => this.blocks.length
   public getBlocks = (): Block[] => this.blocks
 
@@ -30,11 +39,17 @@ class Chain {
   }
 
   public addBlock = (block: Block) => {
-    if(block.isValid(this.getLatestBlock())) {
+    if(block.isValid(this.getLatestBlock()) && this.hashMatch(block.hash)) {
       this.blocks.push(block)
     } else {
       throw "Chain - Invalid block"
     }
+  }
+
+  public hashMatch = (hash: string) => {
+    const hashInBinary: string = hexToBinary(hash)
+    const requiredPrefix: string = '0'.repeat(this.getDifficulty())
+    return hashInBinary.startsWith(requiredPrefix)
   }
 
   public replaceChain = (Blocks: Block[]) => {
