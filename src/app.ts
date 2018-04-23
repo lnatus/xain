@@ -7,22 +7,27 @@ import { Worker } from './worker'
 class App {
   public static run = () => {
     const app = express()
-    app.use(bodyParser.urlencoded({
-      extended: true
-    }))
+    const port = 8080
+    const router = express.Router()
 
     const chain = new Chain()
     const worker = new Worker(chain)
 
-    app.get('/blocks', (req, res) => res.send(JSON.stringify(chain.getBlocks())));
+    app.use(bodyParser.urlencoded({extended: true}))
+    app.use(bodyParser.json());
 
-    app.post('/mine', (req, res) => {
-        const block = worker.findBlock('TRANSACTION-PLACEHOLDER-DATA')
-        chain.addBlock(block)
-        res.send();
-    });
+    router.get('/blocks', (req, res) => {
+      res.json(chain.getBlocks())
+    })
 
-    app.listen(8080, () => console.log('App running on port 8080'))
+    router.post('/mine', (req, res) => {
+      const block = worker.findBlock('TRANSACTION-PLACEHOLDER-DATA')
+      chain.addBlock(block)
+      res.send();
+    })
+
+    app.use('/api', router);
+    app.listen(port, () => console.log(`App running on port ${port}`))
   }
 }
 

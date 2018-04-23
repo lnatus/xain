@@ -33,6 +33,7 @@ class Chain {
   }
   public getHeight = (): number => this.blocks.length
   public getBlocks = (): Block[] => this.blocks
+  public getCurrentDifficulty = (): number => this.blocks[this.blocks.length -1].difficulty
 
   public getLatestBlock = () : Block => {
     return this.blocks[this.blocks.length -1]

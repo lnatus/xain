@@ -3,7 +3,7 @@ import { Block } from './block'
 
 class Worker {
 
-  chain : Chain
+  readonly chain : Chain
 
   public findBlock = (data: string) => {
     const parentBlock = this.chain.getLatestBlock()

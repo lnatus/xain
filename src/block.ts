@@ -31,7 +31,7 @@ import * as Crypto from 'crypto-js'
   }
 
   constructor (index: number, parentHash: string, timestamp: number,
-               data: string, hash: string, difficulty: number, nonce: number) {
+    data: string, hash: string, difficulty: number, nonce: number) {
     this.index = index
     this.parentHash = parentHash
     this.timestamp = timestamp
@@ -48,7 +48,7 @@ const Genesis: Block = new Block (
   new Date().getTime(),
   'Genesis Block',
   '89EB0AC031A63D2421CD05A2FBE41F3EA35F5C3712CA839CBF6B85C4EE07B7A3',
-  1,
+  20,
   0
 );
 
