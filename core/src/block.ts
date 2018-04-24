@@ -47,8 +47,8 @@ const Genesis: Block = new Block (
   '0',
   new Date().getTime(),
   'Genesis Block',
-  '89EB0AC031A63D2421CD05A2FBE41F3EA35F5C3712CA839CBF6B85C4EE07B7A3',
-  20,
+  '797f5a6c16dfeac19648cc4f8741935361858b765a1fe52d042e8107d9208724',
+  1,
   0
 );
 

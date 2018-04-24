@@ -1,7 +1,7 @@
 {
-  "name": "Xain",
+  "name": "xain",
   "version": "0.0.1",
-  "description": "Xain - Javascript blockchain",
+  "description": "XAIN - Javascript blockchain",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,8 +12,10 @@
   },
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "crypto-js": "^3.1.9-1",
     "express": "^4.16.3",
-    "hex-to-binary": "^1.0.1"
+    "hex-to-binary": "^1.0.1",
+    "lodash": "^4.17.5"
   }
 }

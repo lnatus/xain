@@ -1,3 +1,4 @@
+import * as _ from 'lodash'
 import * as hexToBinary from 'hex-to-binary'
 
 import { Block, Genesis } from './block'
@@ -32,7 +33,7 @@ class Chain {
     return this.isDifficultyAdjustment() ? currentDifficulty + 1 : currentDifficulty
   }
   public getHeight = (): number => this.blocks.length
-  public getBlocks = (): Block[] => this.blocks
+  public getBlocks = (): Block[] => _.reverse(this.blocks)
   public getCurrentDifficulty = (): number => this.blocks[this.blocks.length -1].difficulty
 
   public getLatestBlock = () : Block => {

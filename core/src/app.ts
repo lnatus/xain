@@ -1,5 +1,6 @@
 import * as bodyParser from 'body-parser'
 import * as express from 'express'
+import * as cors from 'cors'
 
 import { Chain } from './chain'
 import { Worker } from './worker'
@@ -14,10 +15,15 @@ class App {
     const worker = new Worker(chain)
 
     app.use(bodyParser.urlencoded({extended: true}))
-    app.use(bodyParser.json());
+    app.use(function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      next();
+    });
 
     router.get('/blocks', (req, res) => {
-      res.json(chain.getBlocks())
+      const blocks = chain.getBlocks()
+      res.json({ blocks: blocks })
     })
 
     router.post('/mine', (req, res) => {
