@@ -1,2 +1,2 @@
 # XAIN
-Expirmental JavaScript Blockchain
+Experimental JavaScript Blockchain
