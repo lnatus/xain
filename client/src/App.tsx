@@ -34,7 +34,7 @@ class App extends React.Component {
         <Header />
         <Grid fluid={true}>
           <Row>
-            <Col xs={ 12 } md={ 12 } lg={ 6 }>
+            <Col xs={ 12 } md={ 12 } lg={ 8 }>
               <BlockList blocks={ blocks } />
             </Col>
           </Row>

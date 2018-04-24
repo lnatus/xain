@@ -14,7 +14,7 @@ export default class BlockList extends React.Component<IBlockListProps> {
   public render() {
     return (
       <ul className="xain-block-list">
-        { this.props.blocks.map(b => <Block key={ b.hash } block={ b } />) }
+        { this.props.blocks.reverse().map(b => <Block key={ b.hash } block={ b } />) }
       </ul>
     )
   }

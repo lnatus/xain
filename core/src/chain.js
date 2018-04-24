@@ -1,5 +1,4 @@
 "use strict";
-const _ = require("lodash");
 const hexToBinary = require("hex-to-binary");
 const block_1 = require("./block");
 const DIFFICULTY_ADJUSTMENT_INTERVAL = 10;
@@ -26,7 +25,7 @@ class Chain {
             return this.isDifficultyAdjustment() ? currentDifficulty + 1 : currentDifficulty;
         };
         this.getHeight = () => this.blocks.length;
-        this.getBlocks = () => _.reverse(this.blocks);
+        this.getBlocks = () => this.blocks;
         this.getCurrentDifficulty = () => this.blocks[this.blocks.length - 1].difficulty;
         this.getLatestBlock = () => {
             return this.blocks[this.blocks.length - 1];

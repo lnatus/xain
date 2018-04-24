@@ -1,6 +1,31 @@
 .xain-block {
   padding: 15px;
-  background: #222;
-  color: #FFF;
   margin-bottom: 15px;
+  background: #FFFFFF;
+  box-shadow: 0 1px 4px -1px rgba(0,0,0,0.50);
+}
+
+.xain-block small {
+  float: right;
+}
+
+.xain-block.xain-genesis {
+  background: linear-gradient(-217deg, #67A0FA 2%, #8A51FF 96%);
+  color: #FFF;
+}
+
+.xain-block-index {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  line-height: 60px;
+  color: #FFF;
+  text-align: center;
+  background: linear-gradient(-217deg, #67A0FA 2%, #8A51FF 96%);
+  box-shadow: 0 1px 4px -1px rgba(0,0,0,0.50);
+}
+
+.xain-block.xain-genesis .xain-block-index {
+  background: #FFF;
+  color: #8A51FF;
 }

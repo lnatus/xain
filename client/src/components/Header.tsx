@@ -14,7 +14,8 @@ export default class Header extends React.Component {
     return (
       <header className="xain-header">
         <img src={ logo } alt="XAIN" />
-        <h1>Xain Explorer</h1>
+        <h1>XAIN</h1>
+        <p>Experimental JavaScript Blockchain</p>
       </header>
     )
   }
