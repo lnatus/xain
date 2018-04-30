@@ -7,15 +7,6 @@ import Button from './components/Button'
 import Card from './components/Card'
 import Header from './components/Header'
 
-import styled from 'styled-components'
-
-const Body = styled.body`
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  color: #222;
-`
-
 class App extends React.Component {
   public state = {
     blocks: []
@@ -30,7 +21,7 @@ class App extends React.Component {
   public render() {
     const blocks = this.state.blocks
     return (
-      <Body>
+      <div>
         <Header />
         <Grid fluid={true}>
           <Row>
@@ -44,7 +35,7 @@ class App extends React.Component {
             </Col>
           </Row>
         </Grid>
-      </Body>
+      </div>
     )
   }
 
