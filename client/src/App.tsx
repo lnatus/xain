@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Col, Grid, Row} from 'react-flexbox-grid'
+import { Endpoints } from './common/shared'
 
 import BlockList from './components/BlockList'
 import Button from './components/Button'
@@ -13,9 +14,9 @@ class App extends React.Component {
   }
 
   public componentDidMount() {
-    this.loadBlockchain().then(res => this.setState({
+    this.get(Endpoints.blocks).then(res => this.setState({
       blocks: res.blocks
-      }))
+    }))
   }
 
   public render() {
@@ -39,30 +40,18 @@ class App extends React.Component {
     )
   }
 
-  private loadBlockchain = async () => {
-    const response = await fetch('http://localhost:8080/api/blocks')
+  private get = async (url: string) => {
+    const response = await fetch(url)
     const body = await response.json();
 
     if (response.status !== 200) { throw Error(body.message);}
     return body;
-  };
+  }
 
   private mine = async () => {
-    this.state.isMining = true
-    await fetch('http://localhost:8080/api/mine', {
-      body: JSON.stringify({
-      }),
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: 'post'
-    }).then(() => {
-      this.loadBlockchain().then(res => this.setState({
-        blocks: res.blocks
-      }))
-      this.state.isMining = false
-    })
+    this.get(Endpoints.mine).then(res => this.setState({
+      blocks: [...this.state.blocks, res]
+    }))
   }
 }
 

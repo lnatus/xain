@@ -21,10 +21,10 @@ App.run = () => {
         const blocks = chain.getBlocks();
         res.json({ blocks: blocks });
     });
-    router.post('/mine', (req, res) => {
+    router.get('/mine', (req, res) => {
         const block = worker.findBlock('TRANSACTION-PLACEHOLDER-DATA');
         chain.addBlock(block);
-        res.send();
+        res.json(block);
     });
     app.use('/api', router);
     app.listen(port, () => console.log(`App running on port ${port}`));

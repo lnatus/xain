@@ -23,13 +23,14 @@ class App {
 
     router.get('/blocks', (req, res) => {
       const blocks = chain.getBlocks()
+      console.log(blocks)
       res.json({ blocks: blocks })
     })
 
-    router.post('/mine', (req, res) => {
+    router.get('/mine', (req, res) => {
       const block = worker.findBlock('TRANSACTION-PLACEHOLDER-DATA')
       chain.addBlock(block)
-      res.send();
+      res.json(block)
     })
 
     app.use('/api', router);
