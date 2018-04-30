@@ -9,8 +9,7 @@ import Header from './components/Header'
 
 class App extends React.Component {
   public state = {
-    blocks: [],
-    isMining: false
+    blocks: []
   }
 
   public componentDidMount() {
@@ -31,7 +30,7 @@ class App extends React.Component {
             </Col>
             <Col xs={ 12 } md={ 12 } lg={ 4 }>
               <Card>
-                <Button disabled={ this.state.isMining } onclick={ this.mine } caption={'START MINING'} />
+                <Button disabled={ false } onclick={ this.mine } caption={'START MINING'} />
               </Card>
             </Col>
           </Row>

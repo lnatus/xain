@@ -23,7 +23,6 @@ class App {
 
     router.get('/blocks', (req, res) => {
       const blocks = chain.getBlocks()
-      console.log(blocks)
       res.json({ blocks: blocks })
     })
 
