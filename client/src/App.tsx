@@ -9,7 +9,8 @@ import Header from './components/Header'
 
 class App extends React.Component {
   public state = {
-    blocks: []
+    blocks: [],
+    isBusy: false
   }
 
   public componentDidMount() {
@@ -20,6 +21,7 @@ class App extends React.Component {
 
   public render() {
     const blocks = this.state.blocks
+    const isBusy = this.state.isBusy
     return (
       <div>
         <Header />
@@ -30,7 +32,7 @@ class App extends React.Component {
             </Col>
             <Col xs={ 12 } md={ 12 } lg={ 4 }>
               <Card>
-                <Button disabled={ false } onclick={ this.mine } caption={'START MINING'} />
+                <Button disabled={ isBusy } onclick={ this.mine } caption={'START MINING'} />
               </Card>
             </Col>
           </Row>
@@ -48,8 +50,10 @@ class App extends React.Component {
   }
 
   private mine = async () => {
+    this.setState({ isBusy: true })
     this.get(Endpoints.mine).then(res => this.setState({
-      blocks: [...this.state.blocks, res]
+      blocks: [...this.state.blocks, res],
+      isBusy: false
     }))
   }
 }
