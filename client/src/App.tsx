@@ -6,6 +6,7 @@ import BlockList from './components/BlockList'
 import Button from './components/Button'
 import Card from './components/Card'
 import Header from './components/Header'
+import ProgressBar from './components/ProgressBar'
 
 class App extends React.Component {
   public state = {
@@ -27,6 +28,9 @@ class App extends React.Component {
     return (
       <div>
         <Header />
+        {
+          isBusy && <ProgressBar />
+        }
         <Grid fluid={true}>
           <Row>
             <Col xs={ 12 } md={ 12 } lg={ 8 }>
