@@ -14,8 +14,10 @@ class App extends React.Component {
   }
 
   public componentDidMount() {
+    this.setState({ isBusy: true })
     this.get(Endpoints.blocks).then(res => this.setState({
-      blocks: res.blocks
+      blocks: res.blocks,
+      isBusy: false
     }))
   }
 
