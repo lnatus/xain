@@ -32,8 +32,13 @@ class App {
       res.json(block)
     })
 
+    router.get('/stats', (req, res) => {
+      const stats = chain.getStats()
+      res.json(stats)
+    })
+
     app.use('/api', router);
-    app.listen(port, () => console.log(`App running on port ${port}`))
+    app.listen(port, () => console.log(`XAIN running on port ${port}`))
   }
 }
 

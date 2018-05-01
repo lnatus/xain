@@ -30,6 +30,13 @@ class Chain {
         this.getLatestBlock = () => {
             return this.blocks[this.blocks.length - 1];
         };
+        this.getStats = () => {
+            return {
+                height: this.getHeight(),
+                difficulty: this.getCurrentDifficulty(),
+                latestBlock: this.getLatestBlock()
+            };
+        };
         this.addBlock = (block) => {
             if (block.isValid(this.getLatestBlock()) && this.hashMatch(block.hash)) {
                 this.blocks.push(block);

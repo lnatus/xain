@@ -4,6 +4,12 @@ import { Block, Genesis } from './block'
 
 const DIFFICULTY_ADJUSTMENT_INTERVAL = 10
 
+export type Stat = {
+  height: number,
+  difficulty: number,
+  latestBlock: Block
+}
+
 class Chain {
 
   private blocks: Block[]
@@ -37,6 +43,14 @@ class Chain {
 
   public getLatestBlock = () : Block => {
     return this.blocks[this.blocks.length -1]
+  }
+
+  public getStats = (): Stat => {
+    return {
+      height: this.getHeight(),
+      difficulty: this.getCurrentDifficulty(),
+      latestBlock: this.getLatestBlock()
+    }
   }
 
   public addBlock = (block: Block) => {
