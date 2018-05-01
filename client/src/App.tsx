@@ -53,6 +53,9 @@ class App extends React.Component {
                       <span>Watch this project on </span>
                       <a href={ Resources.github }>GitHub</a>
                     </p>
+                    <small>
+                      <a href= { Resources.readme }>Documentation</a>
+                    </small>
                   </Col>
                 </Row>
               </Card>

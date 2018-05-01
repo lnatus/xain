@@ -12,6 +12,8 @@ const BlockStyled = styled.li`
   box-shadow: 0 1px 4px -1px rgba(0,0,0,0.50);
 
   small {
+    margin-top: 20px;
+    font-size: 10px;
     float: right;
   }
 

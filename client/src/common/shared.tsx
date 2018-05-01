@@ -4,5 +4,6 @@ export const Endpoints = {
 }
 
 export const Resources = {
-  github: 'https://github.com/lnatus/xain'
+  github: 'https://github.com/lnatus/xain',
+  readme: 'https://github.com/lnatus/xain/blob/master/README.md'
 }
