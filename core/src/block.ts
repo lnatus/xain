@@ -1,5 +1,7 @@
 import * as Crypto from 'crypto-js'
 
+import { Config } from './config'
+
  class Block {
 
   index: number
@@ -47,8 +49,8 @@ const Genesis: Block = new Block (
   '0',
   new Date().getTime(),
   'Genesis Block',
-  '797f5a6c16dfeac19648cc4f8741935361858b765a1fe52d042e8107d9208724',
-  1,
+  Config.genesisHash,
+  Config.difficulty,
   0
 );
 
