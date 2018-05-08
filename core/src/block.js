@@ -1,5 +1,6 @@
 "use strict";
 const Crypto = require("crypto-js");
+const config_1 = require("./config");
 class Block {
     constructor(index, parentHash, timestamp, data, hash, difficulty, nonce) {
         this.isValid = (parentBlock) => {
@@ -27,5 +28,5 @@ Block.calculateHash = (index, parentHash, timestamp, data, difficulty, nonce) =>
     return Crypto.SHA256(`${index}${parentHash}${timestamp}${data}${difficulty}${nonce}`).toString();
 };
 exports.Block = Block;
-const Genesis = new Block(0, '0', new Date().getTime(), 'Genesis Block', '797f5a6c16dfeac19648cc4f8741935361858b765a1fe52d042e8107d9208724', 1, 0);
+const Genesis = new Block(0, '0', new Date().getTime(), 'Genesis Block', config_1.Config.genesisHash, config_1.Config.difficulty, 0);
 exports.Genesis = Genesis;
