@@ -3,15 +3,15 @@ import { action, observable, runInAction } from 'mobx'
 import { Endpoints, Messages } from '../common/shared'
 import { RootStore } from './rootStore';
 
-export enum ChainStoreState {
+export enum BlockStoreState {
   Idle,
   Busy,
   Error
 }
 
-export class ChainStore {
+export class BlockStore {
   @observable public blocks = [] as any
-  @observable public state = ChainStoreState.Idle
+  @observable public state = BlockStoreState.Idle
   @observable public stateMessage = ''
 
   public rootStore: RootStore
@@ -23,18 +23,18 @@ export class ChainStore {
   @action
   public async getBlocks() {
     this.blocks = []
-    this.state = ChainStoreState.Busy
+    this.state = BlockStoreState.Busy
     try {
       const response = await fetch(Endpoints.blocks)
       const body = await response.json()
 
       runInAction(() => {
-          this.state = ChainStoreState.Idle
+          this.state = BlockStoreState.Idle
           this.blocks = body.blocks
       })
     } catch (error) {
         runInAction(() => {
-          this.state = ChainStoreState.Error
+          this.state = BlockStoreState.Error
           this.stateMessage = `${ Messages.defaultError } \n Details: ${ error }`
         })
     }
@@ -42,18 +42,18 @@ export class ChainStore {
 
   @action.bound
   public async mine() {
-    this.state = ChainStoreState.Busy
+    this.state = BlockStoreState.Busy
     try {
       const response = await fetch(Endpoints.mine)
       const body = await response.json()
 
       runInAction(() => {
-        this.state = ChainStoreState.Idle
+        this.state = BlockStoreState.Idle
         this.blocks = [...this.blocks, body as never]
       })
     } catch(error) {
       runInAction(() => {
-        this.state = ChainStoreState.Error
+        this.state = BlockStoreState.Error
         this.stateMessage = `${ Messages.defaultError } \n Details: ${ error }`
       })
     }

@@ -8,41 +8,41 @@ import GitHub from './components/GitHub'
 import Header from './components/Header'
 import { MessageType, Message } from './components/Message'
 import ProgressBar from './components/ProgressBar'
-import { ChainStore, ChainStoreState } from './stores/chainStore'
+import { BlockStore, BlockStoreState } from './stores/blockStore'
 
 import { observer, inject } from "mobx-react";
 
 export interface IAppProps {
-  chainStore?: ChainStore
+  blockStore?: BlockStore
 }
 
-@inject('chainStore')
+@inject('blockStore')
 @observer
 class App extends React.Component<IAppProps> {
 
   public render() {
-    const { chainStore } = this.props
+    const { blockStore } = this.props
     return (
       <div>
         <Header />
         {
-          chainStore.state === ChainStoreState.Busy && <ProgressBar />
+          blockStore.state === BlockStoreState.Busy && <ProgressBar />
         }
         <Grid fluid={ true }>
           <Row>
             <Col xs={ 12 } md={ 12 } lg={ 8 }>
-              <BlockList blocks={ chainStore.blocks } />
+              <BlockList blocks={ blockStore.blocks } />
             </Col>
             <Col xs={ 12 } md={ 12 } lg={ 4 }>
               <Card>
-                <Button disabled={ chainStore.state === ChainStoreState.Busy } onclick={ chainStore.mine } caption={'START MINING'} />
+                <Button disabled={ blockStore.state === BlockStoreState.Busy } onclick={ blockStore.mine } caption={'START MINING'} />
               </Card>
               <Card>
                 <GitHub />
               </Card>
               {
-                chainStore.state === ChainStoreState.Error &&
-                <Message messageType={ MessageType.Error } message={ chainStore.stateMessage } />
+                blockStore.state === BlockStoreState.Error &&
+                <Message messageType={ MessageType.Error } message={ blockStore.stateMessage } />
               }
             </Col>
           </Row>

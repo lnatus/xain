@@ -1,10 +1,10 @@
-import { ChainStore } from "./chainStore";
+import { BlockStore } from "./blockStore";
 
 export class RootStore {
 
-  public chainStore: ChainStore
+  public blockStore: BlockStore
 
   constructor() {
-    this.chainStore = new ChainStore(this)
+    this.blockStore = new BlockStore(this)
   }
 }
