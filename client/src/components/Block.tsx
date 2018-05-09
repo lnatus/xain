@@ -1,62 +1,59 @@
 import * as React from 'react'
 import Moment from 'react-moment'
 import styled from 'styled-components'
-
-import { Col, Row} from 'react-flexbox-grid'
+import { Col, Row } from 'react-flexbox-grid'
+import { theme } from '../common/theme'
 
 const BlockStyled = styled.li`
-  padding: 15px;
-  margin-bottom: 15px;
-
-  background: #FFFFFF;
-  box-shadow: 0 1px 4px -1px rgba(0,0,0,0.50);
-
-  small {
-    margin-top: 20px;
-    font-size: 10px;
-    float: right;
-  }
-
-  &.xain-genesis {
-    background: linear-gradient(-217deg, #67A0FA 2%, #8A51FF 96%);
-    color: #FFF;
-  }
+  padding: ${ theme.space.s }
+  margin-bottom: ${ theme.space.s };
+  background: ${ theme.palette.white };
+  box-shadow: ${ theme.palette.shadow };
 `
-
 const IndexStyled = styled.div`
   width: 60px;
   height: 60px;
   border-radius: 50%;
   line-height: 60px;
-  color: #FFF;
   text-align: center;
-  background: linear-gradient(-217deg, #67A0FA 2%, #8A51FF 96%);
-  box-shadow: 0 1px 4px -1px rgba(0,0,0,0.50);
-
-  &.xain-genesis {
-    background: #FFF;
-    color: #8A51FF;
-  }
+  color:  ${ theme.palette.white };
+  box-shadow: ${ theme.palette.shadow };
+  background: ${ theme.palette.gradient };
 `
 
-export interface IBlock {
+const GenesisBlockStyled = BlockStyled.extend`
+  background: ${ theme.palette.gradient };
+  color: ${ theme.palette.white };
+`
+
+const GenesisIndexStyled = IndexStyled.extend`
+  background: ${ theme.palette.white };
+  color: ${ theme.palette.primary };
+`
+
+const GenesisCaptionStyled = styled.small`
+  float: right;
+  font-size: ${ theme.fontsize.xs };
+  margin-top: ${ theme.space.s };
+`
+
+export interface IBlockProps {
   block: any
 }
 
-export default class Block extends React.Component<IBlock> {
-  constructor(props :any) {
-    super(props)
-  }
+export default class Block extends React.Component<IBlockProps> {
 
   public render() {
     const block = this.props.block
+    const BlockComponent =  block.index ? BlockStyled : GenesisBlockStyled
+    const IndexComponent = block.index ? IndexStyled : GenesisIndexStyled
     return (
-      <BlockStyled className={(!block.index ? 'xain-genesis' : '')}>
+      <BlockComponent>
         <Row>
           <Col xs={12} md={12} lg={1}>
-            <IndexStyled className={(!block.index ? 'xain-genesis' : '')}>
+            <IndexComponent>
               { block.index }
-            </IndexStyled>
+            </IndexComponent>
           </Col>
           <Col xs={12} md={12} lg={11}>
           <div>
@@ -71,13 +68,13 @@ export default class Block extends React.Component<IBlock> {
             { block.timestamp }
           </Moment>
           { !block.index  &&
-            <small>
+            <GenesisCaptionStyled>
               GENESIS BLOCK
-            </small>
+            </GenesisCaptionStyled>
           }
          </Col>
         </Row>
-      </BlockStyled>
+      </BlockComponent>
     )
   }
 }

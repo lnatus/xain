@@ -1,11 +1,12 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { theme } from '../common/theme'
 
 const ProgressBarStyled = styled.div`
   width: 100%
-  height: 5px;
+  height: 3px;
   position: absolute;
-  background: -webkit-linear-gradient(left , #67A0FA 30%, #8A51FF 80%, #67A0FA 100%) repeat;
+  background: -webkit-linear-gradient(left , ${ theme.palette.secondary } 30%, ${ theme.palette.primary } 80%, ${ theme.palette.secondary } 100%) repeat;
   background-size: 50% 100%;
   animation-name: moving-gradient;
   animation-duration: 1s;

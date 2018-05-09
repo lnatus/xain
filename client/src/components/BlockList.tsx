@@ -1,21 +1,19 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { theme } from '../common/theme'
 
 import Block from './Block'
 
 const BlockListStyled = styled.ul`
   list-style: none;
-  padding: 0;
-  margin: 15px 0;
+  padding: ${ theme.space.zero };
+  margin: ${ theme.space.s } ${ theme.space.zero };
 `
 
 export interface IBlockListProps {
   blocks: any[]
 }
 export default class BlockList extends React.Component<IBlockListProps> {
-  constructor(props :any) {
-    super(props)
-  }
 
   public render() {
     return (

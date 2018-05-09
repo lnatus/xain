@@ -1,10 +1,11 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { theme } from '../common/theme'
 
 const CardStyled = styled.div`
-  padding: 15px;
-  margin: 15px 0;
-  box-shadow: 0 1px 4px -1px rgba(0,0,0,0.50);
+  padding: ${ theme.space.s };
+  margin: ${ theme.space.s } ${ theme.space.zero };
+  box-shadow: ${ theme.palette.shadow };
 `
 
 export default class Card extends React.Component {

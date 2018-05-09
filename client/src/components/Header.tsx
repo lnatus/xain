@@ -1,13 +1,14 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { theme } from '../common/theme'
 
 import logo from '../images/xain.svg';
 
 const HeaderStyled = styled.header`
-  background-color: #222;
-  padding: 20px;
-  color: white;
   text-align: center;
+  background-color: ${ theme.palette.black };
+  padding: ${ theme.space.s };
+  color: ${ theme.palette.white };
 `
 
 const Logo = styled.img`
@@ -22,11 +23,6 @@ const Logo = styled.img`
 `
 
 export default class Header extends React.Component {
-  constructor(props :any) {
-    super(props);
-    this.state = {
-    };
-  }
 
   public render() {
     return (

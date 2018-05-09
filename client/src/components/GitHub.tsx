@@ -1,9 +1,7 @@
 import * as React from 'react'
 import { Col, Row } from 'react-flexbox-grid'
 import { Resources } from '../common/shared'
-
 import ImageLink from '../components/ImageLink'
-
 import octocat from '../images/octocat.svg'
 
 export default class GitHub extends React.Component {

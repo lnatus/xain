@@ -17,6 +17,7 @@ class App extends React.Component {
   private chainStore = new ChainStore()
 
   public componentDidMount() {
+    // Move Index
     this.chainStore.getBlocks()
   }
 
@@ -28,7 +29,7 @@ class App extends React.Component {
         {
           cs.state === ChainStoreState.Busy && <ProgressBar />
         }
-        <Grid fluid={true}>
+        <Grid fluid={ true }>
           <Row>
             <Col xs={ 12 } md={ 12 } lg={ 8 }>
               <BlockList blocks={ cs.blocks } />
