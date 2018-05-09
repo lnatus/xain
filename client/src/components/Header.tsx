@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { theme } from '../common/theme'
+import { spin } from '../common/keyframes'
 
 import logo from '../images/xain.svg';
 
@@ -12,14 +13,8 @@ const HeaderStyled = styled.header`
 `
 
 const Logo = styled.img`
-  --webkit-animation: xain-spin infinite 20s linear;
-  animation: xain-spin infinite 20s linear;
   height: 80px;
-
-  @keyframes xain-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
+  animation: ${ spin } infinite 20s linear;
 `
 
 export default class Header extends React.Component {

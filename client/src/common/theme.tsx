@@ -1,4 +1,4 @@
-const theme = {
+export const theme = {
   fonts: {
     general: 'Verdana, Geneva, sans-serif'
   },
@@ -32,5 +32,3 @@ const theme = {
     zero: '0',
   }
 }
-
-export { theme }
