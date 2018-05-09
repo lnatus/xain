@@ -10,10 +10,16 @@ const theme = {
     gradient: 'linear-gradient(-225deg, #699AFA 0%, #8A51FF 100%)',
     gray: '#AAA',
     graylight: '#EFEFEF',
+    green: '#3C763D',
+    greenlight: '#DFF0D8',
     primary: '#8A51FF',
+    red: '#A94442',
+    redlight: '#F2DEDE',
     secondary: '#67A0FA',
     shadow: '0 1px 4px -1px rgba(0,0,0,0.50)',
-    white: '#FFF'
+    white: '#FFF',
+    yellow: '#8A6D3B',
+    yellowlight: '#FCF8E3'
   },
   space: {
     lg: '90px',

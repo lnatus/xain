@@ -6,6 +6,7 @@ import Button from './components/Button'
 import Card from './components/Card'
 import GitHub from './components/GitHub'
 import Header from './components/Header'
+import { MessageType, Message } from './components/Message'
 import ProgressBar from './components/ProgressBar'
 import { ChainStore, ChainStoreState } from './stores/chainStore'
 
@@ -41,6 +42,9 @@ class App extends React.Component {
               <Card>
                 <GitHub />
               </Card>
+              {
+                cs.state === ChainStoreState.Error && <Message messageType={ MessageType.Error } message={ cs.stateMessage } />
+              }
             </Col>
           </Row>
         </Grid>

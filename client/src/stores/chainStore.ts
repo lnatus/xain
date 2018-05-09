@@ -1,6 +1,6 @@
 import { action, observable, runInAction } from 'mobx'
 
-import { Endpoints } from '../common/shared'
+import { Endpoints, Messages } from '../common/shared'
 
 export enum ChainStoreState {
   Idle,
@@ -11,6 +11,7 @@ export enum ChainStoreState {
 export class ChainStore {
   @observable public blocks = []
   @observable public state = ChainStoreState.Idle
+  @observable public stateMessage = ''
 
   @action
   public async getBlocks() {
@@ -27,6 +28,7 @@ export class ChainStore {
     } catch (error) {
         runInAction(() => {
           this.state = ChainStoreState.Error
+          this.stateMessage = `${ Messages.defaultError } \n Details: ${ error }`
         })
     }
   }
@@ -45,8 +47,8 @@ export class ChainStore {
     } catch(error) {
       runInAction(() => {
         this.state = ChainStoreState.Error
+        this.stateMessage = `${ Messages.defaultError } \n Details: ${ error }`
       })
     }
   }
-
 }
