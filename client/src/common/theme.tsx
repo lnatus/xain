@@ -1,4 +1,7 @@
 const theme = {
+  fonts: {
+    general: 'Verdana, Geneva, sans-serif'
+  },
   fontsize: {
     lg: '20px',
     m: '14px',
