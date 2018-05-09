@@ -1,6 +1,7 @@
 import { action, observable, runInAction } from 'mobx'
 
 import { Endpoints, Messages } from '../common/shared'
+import { RootStore } from './rootStore';
 
 export enum ChainStoreState {
   Idle,
@@ -9,9 +10,15 @@ export enum ChainStoreState {
 }
 
 export class ChainStore {
-  @observable public blocks = []
+  @observable public blocks = [] as any
   @observable public state = ChainStoreState.Idle
   @observable public stateMessage = ''
+
+  public rootStore: RootStore
+
+  constructor(rootStore: RootStore) {
+    this.rootStore = rootStore;
+  }
 
   @action
   public async getBlocks() {
