@@ -1,20 +1,18 @@
 {
-  "name": "xain",
-  "version": "0.0.1",
-  "description": "XAIN - Javascript blockchain",
-  "main": "app.js",
+  "name": "xaincore",
+  "version": "0.0.5",
+  "description": "XAIN - Xperimental JavaScript Blockchain Core",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "lnatus",
-  "devDependencies": {
-    "@types/node": "^9.6.6"
-  },
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "cors": "^2.8.4",
     "crypto-js": "^3.1.9-1",
-    "express": "^4.16.3",
     "hex-to-binary": "^1.0.1"
+  },
+  "devDependencies": {
+    "install": "^0.11.0",
+    "npm": "^6.0.1"
   }
 }

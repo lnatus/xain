@@ -13,9 +13,11 @@ class Worker {
     let nonce = 0;
 
     while (true) {
-      const hash = Block.calculateHash(index, parentBlock.hash, timestamp, data, difficulty, nonce);
+      const hash = Block.calculateHash(index, parentBlock.hash, timestamp, data, difficulty, nonce)
       if (this.chain.hashMatch(hash)) {
-          return new Block(index, parentBlock.hash, timestamp, data, hash, difficulty, nonce);
+          const block = new Block(index, parentBlock.hash, timestamp, data, hash, difficulty, nonce)
+          this.chain.addBlock(block)
+          return block
       }
       nonce++;
     }

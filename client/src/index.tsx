@@ -43,7 +43,7 @@ const rootStore = new RootStore()
 ReactDOM.render(
   <Provider
     rootStore={ rootStore }
-    blockStore={ rootStore.blockStore }>
+    chainStore={ rootStore.chainStore }>
     <App />
   </Provider>,
   document.getElementById('xain') as HTMLElement
@@ -52,7 +52,7 @@ ReactDOM.render(
 registerServiceWorker();
 
 function startUp() {
-  rootStore.blockStore.getBlocks()
+  rootStore.chainStore.getBlocks()
 }
 
 startUp()
