@@ -13,6 +13,7 @@ export enum ChainStoreState {
 
 export class ChainStore {
   @observable public blocks = [] as Block[]
+  @observable public difficulty = 0
   @observable public state = ChainStoreState.Idle
   @observable public stateMessage = ''
 
@@ -25,6 +26,7 @@ export class ChainStore {
     this.rootStore = rootStore;
     this.chain = new Chain()
     this.worker = new Worker(this.chain)
+    this.difficulty = this.chain.getDifficulty()
   }
 
   @action
@@ -41,7 +43,6 @@ export class ChainStore {
     }
   }
 
-
   @action.bound
   public async mine() {
     try {
@@ -50,6 +51,7 @@ export class ChainStore {
         'mine:success', () => {
           this.worker.findBlock('TRANSACTION-PLACEHOLDER-DATA')
           this.blocks = this.chain.getBlocks()
+          this.difficulty = this.chain.getDifficulty()
         }
       )
       this.state = ChainStoreState.Idle

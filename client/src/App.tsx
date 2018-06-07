@@ -34,6 +34,7 @@ class App extends React.Component<IAppProps> {
             </Col>
             <Col xs={ 12 } md={ 12 } lg={ 4 }>
               <Card>
+                <h3>Current Xain Difficulty: { chainStore.difficulty } </h3>
                 <Button disabled={ chainStore.state === ChainStoreState.Busy } onclick={ chainStore.mine } caption={'START MINING'} />
               </Card>
               <Card>
