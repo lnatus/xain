@@ -1,1 +1,3 @@
-declare module 'xaincore'
+interface Window {
+  Worker: any
+}

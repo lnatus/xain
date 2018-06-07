@@ -1,5 +1,6 @@
-import { action, observable } from 'mobx'
-import { Chain, Worker } from 'xaincore'
+import { action, observable, runInAction } from 'mobx'
+
+import { Block, Chain, Worker } from 'xaincore'
 
 import {  Messages } from '../common/shared'
 import { RootStore } from './rootStore';
@@ -11,14 +12,14 @@ export enum ChainStoreState {
 }
 
 export class ChainStore {
-  @observable public blocks = [] as any
+  @observable public blocks = [] as Block[]
   @observable public state = ChainStoreState.Idle
   @observable public stateMessage = ''
 
   public rootStore: RootStore
 
-  private chain: any
-  private worker: any
+  private chain: Chain
+  private worker: Worker
 
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
@@ -40,17 +41,27 @@ export class ChainStore {
     }
   }
 
+
   @action.bound
-  public mine() {
+  public async mine() {
     try {
       this.state = ChainStoreState.Busy
-      this.worker.findBlock('TRANSACTION-PLACEHOLDER-DATA')
-      this.blocks = this.chain.getBlocks()
+      runInAction(
+        'mine:success', () => {
+          this.worker.findBlock('TRANSACTION-PLACEHOLDER-DATA')
+          this.blocks = this.chain.getBlocks()
+        }
+      )
       this.state = ChainStoreState.Idle
+
     }
     catch(error) {
-      this.state = ChainStoreState.Error
-      this.stateMessage = `${ Messages.defaultError } \n Details: ${ error }`
+      runInAction(
+        'min:error', () => {
+          this.state = ChainStoreState.Error
+          this.stateMessage = `${ Messages.defaultError } \n Details: ${ error }`
+        }
+      )
     }
   }
 }

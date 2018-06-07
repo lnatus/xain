@@ -5,7 +5,7 @@ class Worker {
 
   readonly chain : Chain
 
-  public findBlock = (data: string) => {
+  public findBlock = async (data: string) => {
     const parentBlock = this.chain.getLatestBlock()
     const index = parentBlock.index + 1;
     const timestamp = new Date().getTime()

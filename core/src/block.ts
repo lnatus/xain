@@ -2,7 +2,7 @@ import * as Crypto from 'crypto-js'
 
 import { Config } from './config'
 
- class Block {
+class Block {
 
   index: number
   parentHash: string
